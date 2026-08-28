@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Students</title>
+</head>
+<body>
+
+    <h1>Student List</h1>
+
+    <form method="GET">
+    <input type="text" name="q" placeholder="Search student">
+    <button type="submit">Search</button>
+</form>
+
+<form method="POST" action="/logout/">
+    {% csrf_token %}
+    <button type="submit">Logout</button>
+</form>
+    <br>
+
+    {% for student in students %}
+        <p>
+            {{ student.name }}
+            - {{ student.age }}
+            - {{ student.department }}
+
+            <a href="/edit/{{ student.id }}/">Edit</a>
+            <a href="/delete/{{ student.id }}/">Delete</a>
+        </p>
+    {% endfor %}
+
+</body>
+</html>
